@@ -1,0 +1,128 @@
+//Exceptions & try/catch task-1
+fun main() {
+    println("Enter an integer number: ")
+    val a = readln().toInt()
+    println("Enter an integer number: ")
+    val b = readln().toInt()
+    println("Division of 2 numbers is: ${safeDivide(a,b)}")
+}
+fun safeDivide(a: Int, b: Int): Int {
+    return try {
+        a / b
+    } catch (e: ArithmeticException) {
+        0
+    }
+}
+
+
+//Arrays & Loops task-2
+fun main() {
+    val numbers = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    println("Sum of Even Numbers is: ${sumOfEvenNumbers(numbers)}")
+}
+fun sumOfEvenNumbers(numbers: IntArray): Int {
+    var sum = 0
+    for (number in numbers) {
+        if (number % 2 == 0) {
+            sum += number
+        }
+    }
+    return sum
+}
+
+
+//Normal function & Function overloading task-3
+fun main() {
+    println("Enter your name: ")
+    val name = readln().toString()
+    greet(name)
+    greet()
+}
+fun greet(name: String) {
+    println("Hello, $name!")
+}
+
+fun greet(){
+    println("Hello, World!")
+}
+
+
+//Extension function task-4
+fun main() {
+    println("Enter text to check Palindrome: ")
+    val value = readln().toString()
+
+    println("$value is a palindrome: ${value.isPalindrome()}")
+}
+fun String.isPalindrome(): Boolean {
+    val stringValue = this.filter { it.isLetterOrDigit() }
+    return stringValue == stringValue.reversed()
+}
+
+
+//Lambda functions task-5
+fun main() {
+    val square: (Int) -> Int = { it * it }
+    val number = 7
+    val result = square(number)
+    println("The square of $number is $result")
+}
+
+
+//Normal class & Data class task-6
+fun main() {
+    val myCar = Car("Toyota", "Honda")
+    println("Car: ${myCar.make} ${myCar.model}")
+
+    val owner = Owner("Alice", 30)
+    println("Owner: ${owner.name}, Age: ${owner.age}")
+}
+class Car(val make: String, val model: String) {}
+
+data class Owner(val name: String, val age: Int) {}
+
+
+//Interfaces & Abstract classes task-7
+interface Movable {
+    fun move()
+}
+
+abstract class Vehicle : Movable {
+    abstract val speed: Int
+}
+
+
+//Sealed class & Enum class task-8
+sealed class Result {
+    data class Success(val data: String) : Result()
+    data class Error(val message: String) : Result()
+}
+
+enum class Status {
+    LOADING,
+    SUCCESS,
+    ERROR
+}
+
+
+//Singleton & Visibility modifiers task-9
+obiect AppSettings {
+    private var theme
+
+    fun getTheme(){
+        return theme
+    }
+}
+
+
+// Generics task-10
+fun main() {
+    val intBox = Box(10)
+    println(intBox.getValue())
+}
+
+class Box<T>(private val value: T) {
+    fun getValue(): T {
+        return value
+    }
+}
